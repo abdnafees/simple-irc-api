@@ -2,6 +2,7 @@ version: "3.9"
 
 services:
   db:
+    restart: always
     image: postgres
     volumes:
       - ./data/db:/var/lib/postgresql/data
@@ -9,11 +10,20 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
   web:
-    build: .
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: /entrypoint.sh
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/code
+      - .:/simple-irc
     ports:
       - "8000:8000"
     environment:
@@ -21,4 +31,5 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     depends_on:
-      - db
+      db:
+        condition: service_healthy
