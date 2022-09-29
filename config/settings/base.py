@@ -27,12 +27,6 @@ environ.Env.read_env(BASE_DIR.__str__() + "/../.env")
 # Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
 SECRET_KEY = env("SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -62,8 +56,6 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication",
     ),
 }
-
-# AUTH_USER_MODEL = "api.customauth"
 
 ROOT_URLCONF = "config.urls"
 
