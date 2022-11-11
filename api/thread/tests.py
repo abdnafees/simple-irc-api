@@ -1,3 +1,7 @@
+'''
+This files contains tests for the Thread API endpoint.
+'''
+
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -6,6 +10,7 @@ from .models import Thread
 
 
 class ThreadTests(APITestCase):
+
     def test_create_thread(self):
         url = reverse("create-thread")
         data = {

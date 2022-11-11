@@ -1,5 +1,7 @@
-from rest_framework import permissions
-from rest_framework import status
+'''
+A view function, or view for short, is a Python function that takes a web request and returns a web response. 
+'''
+from rest_framework import permissions, status
 from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.response import Response
 
