@@ -10,6 +10,7 @@ from .serializers import ChatMessageSerializer, ThreadSerializer
 
 
 class ThreadCreateView(CreateAPIView):
+
     serializer_class = ThreadSerializer
 
     def post(self, request):
@@ -21,15 +22,18 @@ class ThreadCreateView(CreateAPIView):
 
 
 class ThreadListView(ListAPIView):
+
     queryset = Thread.objects.all()
     serializer_class = ThreadSerializer
 
 
 class SendMessageView(CreateAPIView):
+
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = ChatMessageSerializer
 
     def post(self, request, *args, **kwargs):
+
         serializer = ChatMessageSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()

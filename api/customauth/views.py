@@ -15,14 +15,17 @@ from customauth.serializers import (
 
 
 class ListUsers(ListAPIView):
+
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
 
 
 class RegisterUser(CreateAPIView):
+
     serializer_class = CustomUserSerializer
 
     def post(self, request):
+
         serializer = CustomUserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
@@ -32,6 +35,7 @@ class RegisterUser(CreateAPIView):
 class LoginView(ObtainAuthToken):
 
     def post(self, request, *args, **kwargs):
+
         serializer = CustomUserLoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['username']

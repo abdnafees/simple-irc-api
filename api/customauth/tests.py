@@ -9,7 +9,9 @@ from .models import CustomUser
 
 
 class CustomAuthTests(APITestCase):
-    def test_create_user(self):
+
+    def test_create_user(self) -> None:
+
         url = reverse('create-user')
         data = {
             'username': 'testuser1',
@@ -17,6 +19,7 @@ class CustomAuthTests(APITestCase):
             'email': 'test1@gmail.com',
             'password': '123456',
         }
+
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(CustomUser.objects.count(), 1)
