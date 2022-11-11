@@ -1,7 +1,11 @@
+'''
+This file contains URL endpoints for Thread app.
+'''
+
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
 
-from .views import ThreadCreateView, ThreadListView, SendMessageView
+from .views import SendMessageView, ThreadCreateView, ThreadListView
 
 urlpatterns = [
     path("", ThreadListView.as_view()),

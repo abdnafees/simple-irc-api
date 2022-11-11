@@ -1,19 +1,18 @@
+'''
+This file contains Serializer class for the Customauth model.
+'''
 from rest_framework import serializers
 
-from .models import CustomUser
+from customauth.models import CustomUser
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = "__all__"
-
-    def create(self, validated_data):
-        user = CustomUser.objects.create_user(validated_data)
-        return user
+        fields: str = '__all__'
 
 
 class CustomUserLoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ["username", "password", "email"]
+        fields: list[str] = ['username', 'password', 'email']

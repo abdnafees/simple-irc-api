@@ -1,8 +1,10 @@
+'''
+This file contains URL endpoints for Server app.
+'''
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
 
-from .views import ServerList, CreateServer
-
+from server.views import CreateServer, ServerList
 
 urlpatterns = [
     path("", ServerList.as_view()),
